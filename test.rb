@@ -10,9 +10,7 @@ class Rover
 	
 	def execute_commands(commands)
 		commands.each_char do |command|
-			if command == "L"
-				change_direction(command)
-			elsif command == "R"
+			if command == "L" || command == "R"
 				change_direction(command)
 			elsif command == "M"
 				move
@@ -26,18 +24,18 @@ class Rover
 	def change_direction(rotate)
 		cardinal = ["N", "E", "S", "W"]
 		if rotate == "R"
-			@d = cardinal[cardinal.index(:d) += 1]
+			@d = cardinal[cardinal.index(d) + 1]
 		else
-			@d = cardinal[(cardinal.index(:d) -= 1)]
+			@d = cardinal[cardinal.index(d) - 1]
 		end
 	end
 
 	def move
-		if @x > @@x || @x < 0
-			puts "Error: Rover cannot leave the boundaries of the plateau! Please adjust direction before moving."
-		elsif @y > @@y || @y < 0
-			puts "Error: Rover cannot leave the boundaries of the plateau! Please adjust direction before moving."
-		else
+		# if @x > @@x || @x < 0
+		# 	puts "Error: Rover cannot leave the boundaries of the plateau! Please adjust direction before moving."
+		# elsif @y > @@y || @y < 0
+		# 	puts "Error: Rover cannot leave the boundaries of the plateau! Please adjust direction before moving."
+		# else
 			case @d 
 			when "N"
 				@y += 1
@@ -48,9 +46,8 @@ class Rover
 			when "W"
 				@x -= 1
 			end
-		end
+		#end
 	end
-
 	def self.plateau_boundaries(str)
 		@@x = str[0]
 		@@y = str[2]
@@ -59,9 +56,9 @@ end
 
 Rover.plateau_boundaries('5 5')
 
-rover1 = Rover.new('1 2 N')
-rover1.execute_commands('LMLMLMLMM')
+puts rover1 = Rover.new(1, 2, "N")
+puts rover1.execute_commands('LMLMLMLMM')
 
-rover2 = Rover.new('3 3 E')
-rover2.execute_commands('MMRMMRMRRM')
+# rover2 = Rover.new('3 3 E')
+# rover2.execute_commands('MMRMMRMRRM')
 

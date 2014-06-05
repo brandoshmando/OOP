@@ -122,3 +122,86 @@ p.x # calls getter
 p.x = 5 #calls setter
 %>
 
+Adding and add method..
+<%
+class Point
+	attr_reader :x, :y #creates getter and setter methods for :x and :y
+	def initialize(x, y)
+		@x = x
+		@y = y
+	end
+	def +(another_point)
+		Point.new(@x+ another_point.x, @y + another_point.y)
+	end
+
+	def to_s
+		"(#{@x}, #{@y})"
+	end
+end
+
+p = Point.new(1, 2)
+
+p1 = Point.new(1,2)
+p2 = Point.new(2, 5)
+
+p3 = p1 + p2
+puts p3
+%>
+
+Super within a method tells it to go look in its parent for a method of the same name, and call it. You can leave it there or add on to it from there.
+
+<%
+class Point
+	attr_reader :x, :y #creates getter and setter methods for :x and :y
+	def initialize(x, y)
+		@x = x
+		@y = y
+	end
+	def +(another_point)
+		Point.new(@x+ another_point.x, @y + another_point.y)
+	end
+
+	def to_s
+		"(#{x}, #{y})"
+	end
+end
+
+class Line
+	attr_reader :start_point, :end_point
+	def initialize(start_point, end_point)
+		@start_point = start_point
+		@end_point = end_point
+	end
+
+	def to_s
+		"#{start_point.to_s} == #{end_point.to_s}"
+	end
+end
+
+class Vector < Line 
+	attr_reader :direction
+	def initialize(start_point, end_point, direction)
+		super(start_point, end_point) #reuses parents initializer
+		@direction = direction
+	end
+
+	def to_s
+		super + "-> #{direction}"
+	end
+end
+
+
+p1 = Point.new(1, 2)
+p2 = Point.new(2, 5)
+l = Line.new(p1, p2)
+puts l
+
+vector = Vector.new(p1, p2, 5) 
+puts vector
+
+p3 = p1 + p2
+puts p3
+%>
+
+
+

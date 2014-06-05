@@ -1,0 +1,124 @@
+OBJECT ORIENTED PROGRAMMING
+
+Procedural Programming: Line by line, that is the way the the program executes...
+	-pass data around
+	-C
+
+Object Oriented came around	
+	-create stand-alone objects that represent real world things ie interacting or talking with each other, have different/separate states
+	-SmallTalk was the OG OOP lang
+
+	Functional Programming
+		-pass functions around that call each other all the time
+		-math based
+		-possibility of more elegant code
+		-clojure, javascript
+
+Benefit of OOP: Write code that is similar to problem space (industry you are coding for)
+
+Object?
+-Car
+-Boat
+-Bank account
+-Window
+
+All have different properties
+Anything!!!
+
+Object parts
+-Name
+-State
+-Behavior
+Must have a state and behavior to be an Object
+
+Object Name
+-Likely a variable in this case
+
+Object State
+ex Gas tank
+-current price
+-fuel level
+-empty?
+
+Object Behavior
+-fill tank
+-dispense gas
+
+Bank Account
+-state: balance
+-behavior: deposit, withdraw
+
+Note: You can tell an object what to do, and it should know all of its behaviors within itself. Separation of concerns. 
+	Ex: Car, radio, wheels
+		all separate objects that know their own behaviors (classes?)
+
+MESSAGE PASSING
+	-We are telling an object to do something. If an object does not know a way to execute a behavior, throws no method error
+
+	Data encapsulation
+	 -State is usually kept private ie data
+	 -behavior is always public ie we want everyone to be able to tell our object what to do
+	 -to access or change data, you have to use a method. That method must be included within object
+
+	 Tell an object to perform a task
+
+	 Ask the object for its data and perform task else where
+
+CLASSES AND OBJECTS
+
+Class: a blueprint for an object. "The idea of what and object would look like." 																		"The concept of a dog (class Dog)"
+				Caveat: Class is technically not an object but rather a class object (more later)
+Instance: The actual object created from the "blue print" the object (.new)
+
+		-Instance variable @var: the value (whatever it is set as in initialize) of this variable always sticks around with that particular instance of a class 
+	<% 
+	class Point
+		def initialize(x, y)
+			@x = x
+			@y = y
+		end
+		#getter method to output info to user
+		def x 
+			@x
+		end
+
+		def y
+			@y
+		end
+
+		#setter method so user can set method
+		def x=(x)
+			@x = x 
+		end
+
+		def y=(y)
+			@y = y
+		end
+	#attr_reader is shortcut to getter method
+	#attr_writer is shortcut to setter method
+	#attr_accessor is shortcut to both
+
+	end
+
+	p = Point.new(x, y)
+
+	p.x # calls getter
+	p.x = 5 #calls setter
+	%>
+
+	With attr example:
+	<%
+	class Point
+	attr_accessor :x, :y #creates getter and setter methods for :x and :y
+	def initialize(x, y)
+		@x = x
+		@y = y
+	end
+end
+
+p = Point.new(x, y)
+
+p.x # calls getter
+p.x = 5 #calls setter
+%>
+

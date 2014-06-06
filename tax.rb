@@ -7,8 +7,8 @@ class Receipt
 	end
 
 	def add_item(name, amount, is_imported, is_exempt, price)
-		@receipt.push(name: name, amount: amount, is_imported?: is_imported, 
-																is_exempt?: is_exempt, price: price.to_f)
+		@receipt.push(name: name, amount: amount, is_imported: is_imported, 
+																is_exempt: is_exempt, price: price.to_f)
 	end
 
 	def print
